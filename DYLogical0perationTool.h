@@ -16,15 +16,14 @@ typedef NS_OPTIONS(NSInteger, DYRoomStateType) {
     DYRoomStateTypeFirstEnterRoom       = 1 << 1,
 };
 
-
-static inline void setCurrentTypeToTypeStaute(void* currentType, int toType, BOOL status){
+static inline void setCurrentTypeToTypeStaute(NSInteger* currentType, NSInteger toType, BOOL status){
     if (status) {
-        (*(int *)currentType) = (*(int *)currentType) | (toType);
+        (*currentType) = (*currentType) | (toType);
     }else{
-        (*(int *)currentType) = (*(int *)currentType) & (~toType);
+        (*currentType) = (*currentType) & (~toType);
     }
 }
 
-static inline BOOL currentTypeIsType(int currentType, int isType){
-    return (currentType & isType) == isType;
+static inline BOOL getCurrentTypeIsType(NSInteger* currentType, NSInteger isType){
+    return ((*currentType) & isType) == isType;
 }
